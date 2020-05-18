@@ -25,7 +25,7 @@ const TrackListFlow = () => {
 };
 
 export default function App() {
-  let isLoggedIn = true;
+  let isLoggedIn = false;
   return (
     <NavigationContainer>
       {isLoggedIn ? (
