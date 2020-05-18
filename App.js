@@ -35,9 +35,11 @@ export default function App() {
           <Tab.Screen name="Account" component={AccountScreen} />
         </Tab.Navigator>
       ) : (
-        <Stack.Navigator>
-          <Stack.Screen name="SignIn" component={SigninScreen}/>
+        <Stack.Navigator
+          initialRouteName="SignUp"
+        >
           <Stack.Screen name="SignUp" component={SignupScreen}/>
+          <Stack.Screen name="SignIn" component={SigninScreen}/>
         </Stack.Navigator>
       )}
     </NavigationContainer>
