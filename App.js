@@ -38,7 +38,11 @@ export default function App() {
         <Stack.Navigator
           initialRouteName="SignUp"
         >
-          <Stack.Screen name="SignUp" component={SignupScreen}/>
+          <Stack.Screen
+            name="SignUp"
+            component={SignupScreen}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="SignIn" component={SigninScreen}/>
         </Stack.Navigator>
       )}
