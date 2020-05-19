@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { Provider as AuthProvider } from './src/context/authContext';
 import AccountScreen from "./src/screens/AccountScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
@@ -24,7 +25,7 @@ const TrackListFlow = () => {
   )
 };
 
-export default function App() {
+const App = () => {
   let isLoggedIn = false;
   return (
     <NavigationContainer>
@@ -48,7 +49,7 @@ export default function App() {
       )}
     </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -58,3 +59,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default () => {
+  return (
+    <AuthProvider>
+      <App/>
+    </AuthProvider>
+  )
+}
