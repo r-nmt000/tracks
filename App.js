@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -11,6 +11,7 @@ import SignupScreen from "./src/screens/SignupScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
+import { Context as AuthContext } from "./src/context/authContext";
 
 const Stack = createStackNavigator();
 const TrackListStack = createStackNavigator();
@@ -18,7 +19,7 @@ const Tab = createBottomTabNavigator();
 
 const TrackListFlow = () => {
   return (
-    <TrackListStack.Navigator>
+    <TrackListStack.Navigator initialRouteName="TrackList">
       <TrackListStack.Screen name="TrackList" component={TrackListScreen} />
       <TrackListStack.Screen name="TrackDetail" component={TrackDetailScreen} />
     </TrackListStack.Navigator>
@@ -26,10 +27,10 @@ const TrackListFlow = () => {
 };
 
 const App = () => {
-  let isLoggedIn = false;
+  const { state } = useContext(AuthContext);
   return (
     <NavigationContainer>
-      {isLoggedIn ? (
+      {state.token ? (
         <Tab.Navigator>
           <Tab.Screen name="TrackListFlow" component={TrackListFlow} />
           <Tab.Screen name="TrackCreate" component={TrackCreateScreen} />
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
 export default () => {
   return (
     <AuthProvider>
-      <App/>
+      <App />
     </AuthProvider>
   )
 }
