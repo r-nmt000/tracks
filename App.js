@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Provider as AuthProvider } from './src/context/authContext';
 import AccountScreen from "./src/screens/AccountScreen";
@@ -83,7 +84,9 @@ const styles = StyleSheet.create({
 export default () => {
   return (
     <AuthProvider>
-      <App />
+      <SafeAreaProvider>
+        <App />
+      </SafeAreaProvider>
     </AuthProvider>
   )
 }
