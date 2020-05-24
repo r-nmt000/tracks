@@ -11,7 +11,9 @@ import SignupScreen from "./src/screens/SignupScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
+import SplashScreen from "./src/screens/SplashScreen";
 import { Context as AuthContext } from "./src/context/authContext";
+import StackNavigator from "@react-navigation/stack/src/navigators/createStackNavigator";
 
 const Stack = createStackNavigator();
 const TrackListStack = createStackNavigator();
@@ -28,6 +30,19 @@ const TrackListFlow = () => {
 
 const App = () => {
   const { state } = useContext(AuthContext);
+  if (state.isLoading) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="SplashScreen"
+            component={SplashScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  }
   return (
     <NavigationContainer>
       {state.token ? (
