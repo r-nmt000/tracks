@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Provider as AuthProvider } from './src/context/authContext';
+import { Provider as LocationProvider } from './src/context/locationContext';
 import AccountScreen from "./src/screens/AccountScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
@@ -83,10 +84,12 @@ const styles = StyleSheet.create({
 
 export default () => {
   return (
-    <AuthProvider>
-      <SafeAreaProvider>
-        <App />
-      </SafeAreaProvider>
-    </AuthProvider>
+    <LocationProvider>
+      <AuthProvider>
+        <SafeAreaProvider>
+          <App />
+        </SafeAreaProvider>
+      </AuthProvider>
+    </LocationProvider>
   )
 }
