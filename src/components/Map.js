@@ -5,7 +5,7 @@ import { Context as LocationContext } from "../context/locationContext";
 import TrackForm from "./TrackForm";
 
 const Map = () => {
-  const { state: {currentLocation} } = useContext(LocationContext);
+  const { state: {currentLocation, locations} } = useContext(LocationContext);
 
   if (!currentLocation) {
     return <ActivityIndicator size="large" style={{ marginTop: 200}}/>
@@ -38,6 +38,7 @@ const Map = () => {
           stockColor="rgba(158, 158, 255, 1.0)"
           fillColor="rgba(158, 158, 255, 0.3)"
         />
+        <Polyline coordinates={locations.map(loc => loc.coords)} />
       </MapView>
       <TrackForm/>
     </>
