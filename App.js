@@ -7,6 +7,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Provider as AuthProvider } from './src/context/authContext';
 import { Provider as LocationProvider } from './src/context/locationContext';
+import { Provider as TrackProvider } from './src/context/trackContext';
 import AccountScreen from "./src/screens/AccountScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
@@ -15,6 +16,7 @@ import TrackListScreen from "./src/screens/TrackListScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import SplashScreen from "./src/screens/SplashScreen";
 import { Context as AuthContext } from "./src/context/authContext";
+import { Context as TrackContext } from "./src/context/trackContext";
 import StackNavigator from "@react-navigation/stack/src/navigators/createStackNavigator";
 
 const Stack = createStackNavigator();
@@ -84,12 +86,14 @@ const styles = StyleSheet.create({
 
 export default () => {
   return (
-    <LocationProvider>
-      <AuthProvider>
-        <SafeAreaProvider>
-          <App />
-        </SafeAreaProvider>
-      </AuthProvider>
-    </LocationProvider>
+    <TrackProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <SafeAreaProvider>
+            <App />
+          </SafeAreaProvider>
+        </AuthProvider>
+      </LocationProvider>
+    </TrackProvider>
   )
 }

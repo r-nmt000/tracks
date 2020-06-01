@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Accuracy, requestPermissionsAsync, watchPositionAsync } from "expo-location";
-import {call} from "react-native-reanimated";
+
 
 export default (shouldTrack, callback) => {
   const [err, setErr] = useState(null);
