@@ -4,8 +4,9 @@ import {Input, Button} from "react-native-elements";
 import Spacer from "./Spacer";
 import { Context as LocationContext } from '../context/locationContext';
 import useSaveTrack from "../hooks/useSaveTrack";
+import { withNavigation } from "@react-navigation/compat";
 
-const TrackForm = () => {
+const TrackForm = ({navigation}) => {
   const { state: { name, recording, locations }, startRecording, stopRecording, changeName } = useContext(LocationContext);
   const [saveTrack] = useSaveTrack();
 
@@ -22,7 +23,10 @@ const TrackForm = () => {
       </Spacer>
       <Spacer>
         {!recording && locations.length ? (
-          <Button title="Save recording" onPress={saveTrack}/>
+          <Button title="Save recording" onPress={() => {
+            saveTrack();
+            navigation.navigate('TrackListFlow')
+          }}/>
         ) : null}
       </Spacer>
     </>
@@ -31,4 +35,4 @@ const TrackForm = () => {
 
 const styles = StyleSheet.create({});
 
-export default TrackForm;
+export default withNavigation(TrackForm);

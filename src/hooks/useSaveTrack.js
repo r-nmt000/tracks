@@ -5,10 +5,11 @@ import { Context as LocationContext } from '../context/locationContext';
 
 export default (shouldTrack, callback) => {
   const { createTrack } = useContext(TrackContext);
-  const { state: { locations, name }} = useContext(LocationContext);
+  const { state: { locations, name }, reset} = useContext(LocationContext);
 
   const saveTrack = () => {
     createTrack(name, locations);
+    reset();
   };
 
   return [saveTrack];
